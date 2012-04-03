@@ -1,0 +1,18 @@
+#!/bin/bash
+# requires java, javac. 
+
+
+# Don't continue after errors
+set -e
+
+# Don't clear Karla's screen
+if [ `whoami` == "damon" ]; then
+   reset
+fi
+
+echo Compiling...
+javac *.java
+javac */*.java
+javac */*/*.java
+
+echo Compilation Complete!
