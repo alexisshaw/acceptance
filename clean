@@ -9,7 +9,6 @@ rm -f *~
 rm -f */*~
 rm -f */*/*~
 
-# If it's Karla's computer, don't clear the screen
-if [ `whoami` == "damon" ]; thenfi
+if [ `whoami` == "damon" ]; then
    reset
-
+fi

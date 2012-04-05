@@ -11,8 +11,10 @@ if [ `whoami` == "damon" ]; then
 fi
 
 echo Compiling...
-javac *.java
+cd ..
 javac */*.java
 javac */*/*.java
 
 echo Compilation Complete!
+
+cd acceptanceTests

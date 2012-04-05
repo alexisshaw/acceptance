@@ -1,0 +1,16 @@
+To run:
+
+   bash compileAndRun.sh
+
+To make work with your program:
+   *  Implement the interface Acceptance Interface, that will interact with your game. 
+   **    It should be called "myTestingInterface.java"
+   **    Constructor for it should recieve no arguments 
+   **    Be warned: This testing protocol is still an alpha design, 
+                     and is likely to change in the coming week
+   *  Copy your implementation into the acceptanceTests subdirectory. 
+
+
+To add tests:
+   * If you are not a class rep, add your tests to the unverified tests folder (otherwise if you 
+
