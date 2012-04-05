@@ -6,7 +6,7 @@
  * @since 05.04.2012
  */
 
-package acceptanceTests;
+package acceptance;
 
 public class Move {
 
