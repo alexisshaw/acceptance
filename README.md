@@ -14,10 +14,9 @@ on the UNSW CSE servers:
 
 
 === Implementing The Interface (unstable) ===
-* You are required to implement the AcceptanceInterface. You can revise
-  the lectures and student textbook if you are a bit lossed. There should also
-  be documentation in the AcceptanceInterface as well however everything is
-  in alpha.
+* You are required to place your implementation in AcceptanceImplemenation that
+  implements AcceptanceInterface. There are tutorials in doc/ with additional
+  information.
 
 === Requesting Tests ===
 * If you are familiar with github:
