@@ -6,15 +6,16 @@
  * @since 05.04.2012
  */
 
-package acceptanceTests;
+package framework;
 
-import acceptanceTests.unverifiedTests.*;
+import tests.unstable.ExampleTest;
+import tests.unstable.isGameStateImplemented;
 //import acceptanceTests.borderlineTests.*;
 //import acceptanceTests.trueTests.*;
 
 
 public class Tester {
-    
+
    private static final Test[] unverifiedTests = {
       new ExampleTest(),
       new isGameStateImplemented()
@@ -25,7 +26,7 @@ public class Tester {
    };
 
    private static final Test[] trueTests = {
-   
+
    };
 
    public static void main (String[] args) {
@@ -46,22 +47,22 @@ public class Tester {
       } else {
          // step thru all the tests one at a time
          if (runTrueTests) {
-            if (doesFailTests(trueTests)) 
+            if (doesFailTests(trueTests))
                failed = true;
          }
          if (runBorderlineTests) {
-            if (doesFailTests(borderlineTests)) 
+            if (doesFailTests(borderlineTests))
                failed = true;
          }
          if (runUnverifiedTests) {
-            if (doesFailTests(unverifiedTests)) 
+            if (doesFailTests(unverifiedTests))
                failed = true;
          }
       }
       if (failed) {
          System.out.println ("FAILED");
          System.out.println ("Not accepted!");
-      } else { 
+      } else {
          System.out.println ("ACCEPTED");
          System.out.println ("You are awesome!");
       }

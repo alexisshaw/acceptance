@@ -6,7 +6,7 @@
  * @since 05.04.2012
  */
 
-package acceptance;
+package framework;
 
 public enum Card {
    AESCULAPINUM ("Aesculapinum"),

@@ -6,13 +6,12 @@
  * @since 05.04.2012
  */
 
-package acceptance;
+package framework;
 
 import java.util.List;
-import java.util.Collections;
 
 public class GameState {
-   private static final int DIE_DISC_COUNT = 6;                   
+   private static final int DIE_DISC_COUNT = 6;
    private static final int TOTAL_DISC_COUNT = DIE_DISC_COUNT + 2;
    private static final int PLAYER_COUNT = 2;
    private static final int NUM_CARDS = 52;
@@ -70,7 +69,7 @@ public class GameState {
       this.playerHands = playerHands;
       this.playerCardsOnField = playerCardsOnField;
    }
-   
+
    /**
     * Getter for whoesTurn attribute.
     * @return whoesTurn flag for the players turn.
@@ -84,7 +83,7 @@ public class GameState {
     * @return numPlayers the number of players in the game.
     */
    public int getNumPlayers () {
-      return numPlayers;   
+      return numPlayers;
    }
 
    /**

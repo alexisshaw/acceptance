@@ -1,6 +1,6 @@
-package acceptanceTests.unverifiedTests;
+package tests.unstable;
 
-public class ExampleTest implements acceptanceTests.Test {
+public class ExampleTest implements framework.Test {
 
    public String toString () {
       return "testing something is functional...";

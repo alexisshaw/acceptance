@@ -1,6 +1,6 @@
-package acceptanceTests.borderlineTests;
+package tests.testing;
 
-public class ExampleTest1 implements acceptanceTests.Test {
+public class ExampleTest1 implements framework.Test {
 
    public String toString () {
       return "testing something is functional...";

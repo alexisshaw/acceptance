@@ -1,6 +1,6 @@
-package acceptanceTests.trueTests;
+package tests.stable;
 
-public class ExampleTest0 implements acceptanceTests.Test {
+public class ExampleTest0 implements framework.Test {
 
    public String toString () {
       return "testing something is functional...";
