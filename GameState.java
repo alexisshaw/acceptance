@@ -51,13 +51,13 @@ public class GameState {
       assert (victoryPoints != null);
       assert (playersHands != null);
       assert (playersCardsOnField !=null);
-      assert (playersHands.size() == PLAYER_COUNT);
+      assert (playersHands.length == PLAYER_COUNT);
       assert (playersCardsOnField.length == PLAYER_COUNT);
       // Checks the field length is exactly the DIE_DISC_COUNT.
       int numCards = deck.size() + discard.size();
       for (int i = 0; i < PLAYER_COUNT; i++) {
          assert (playersCardsOnField[i].length == DIE_DISC_COUNT);
-         numCards += playersHands[i];
+         numCards += playersHands[i].size();
       }
       // Checking the number of cards in the game is NUM_CARDS.
       assert (numCards == NUM_CARDS);
