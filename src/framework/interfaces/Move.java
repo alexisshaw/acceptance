@@ -44,11 +44,11 @@ public interface Move {
      * This will never be called if:
      * <ul>
      * <li>the player does not have the appropriate action dice to
-     * activate the given disc</li>
+     * activate the chosen card</li>
      * <li>the card cannot be activated at the current time</li>
      * <li>the ActionData parameter does not match the activated
      * card</li>
-     * <li>the dice disc is not valid for the current game</li>
+     * <li>the dice disc is not present in the current game</li>
      * </ul>
      *  </p>
      *
@@ -129,7 +129,7 @@ public interface Move {
      * <p>
      * After this method is called:
      * <ul>
-     * <li>the current player will have advanced</li>
+     * <li>The old next player is now the current player</li>
      * <li>the appropriate number of dice will have been rolled</li>
      * <li>the appropriate number of victory points will have been
      * removed for vacant dice discs</li>
@@ -153,11 +153,13 @@ public interface Move {
      * <p>
      * After this method is called:
      * <ul>
+     * <li>the selected card is removed from the current player's hand
+     * </li>
      * <li>the selected card will be present on the dice disc</li>
      * <li>the required amount of money will have been deducted from the
      * player's hand</li>
-     * <li>any extra changes specific to the card
-     * to be carried out when a card is placed, will be in effect</li>
+     * <li>any extra changes specific to the placed card will be in
+     * effect</li>
      * </ul>
      * </p>
      *
