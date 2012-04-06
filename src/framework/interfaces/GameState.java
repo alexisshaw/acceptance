@@ -37,7 +37,7 @@ import java.util.List;
 public interface GameState {
 
    /**
-    * Get the number of the player whose turn it currently is.
+    * Get the current turn's player number
     *
     * <p>
     * This method will return an integer between 0 and
@@ -265,8 +265,8 @@ public interface GameState {
     *
     * <p>
     * The number of victory points not held by any player are returned.
-    * This method is included so the overall number of Victory Points in
-    * a game can be tested.
+    * This method is included so that the total number of Victory
+    * Points in a game can be tested.
     * </p>
     *
     * @return the number of Victory Points not held by any player
