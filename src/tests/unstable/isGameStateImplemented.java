@@ -1,9 +1,10 @@
 package tests.unstable;
 
-import framework.AcceptanceInterface;
-import framework.Card;
-import framework.GameState;
+import framework.interfaces.AcceptanceInterface;
+import framework.cards.Card;
+import framework.interfaces.GameState;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class isGameStateImplemented implements framework.Test {
 

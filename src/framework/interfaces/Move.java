@@ -4,6 +4,23 @@ import framework.cards.ActivateData;
 import framework.cards.Card;
 
 /**
+ * This interface defines all possible actions a theoretical player
+ * can make in a game at any given point.
+ *
+ * <p>
+ * This interface can be implemented in your gameState object, or any
+ * other class of your choosing. The tests will call these methods to
+ * make changes in your game, simulating actual play.
+ * </p>
+ *
+ * <p>
+ * When implementing, you can be confidant that any method called will
+ * be valid for the present gameState, and so will not require data
+ * validation by the game being tested. The author of a test is
+ * required to ensure it is correct before including it in the testing
+ * package. The final implementation of the testing framework will
+ * perform a number of automatic sanity checks on each method.
+ * </p>
  *
  * @author Matthew Moss (matthew.moss)
  * @author Lasath Fernando (lasath.fernando)
