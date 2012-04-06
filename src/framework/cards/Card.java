@@ -6,7 +6,7 @@
  * @since 05.04.2012
  */
 
-package framework;
+package framework.cards;
 
 public enum Card {
    AESCULAPINUM ("Aesculapinum"),
