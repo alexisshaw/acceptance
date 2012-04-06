@@ -8,17 +8,16 @@
 
 package framework;
 
-import tests.unstable.ExampleTest;
-import tests.unstable.isGameStateImplemented;
-//import acceptanceTests.borderlineTests.*;
-//import acceptanceTests.trueTests.*;
+import tests.stable.*;
+import tests.testing.*;
+import tests.unstable.*;
 
 
 public class Tester {
 
    private static final Test[] unverifiedTests = {
       new ExampleTest(),
-      new isGameStateImplemented()
+//      new isGameStateImplemented()
    };
 
    private static final Test[] borderlineTests = {
