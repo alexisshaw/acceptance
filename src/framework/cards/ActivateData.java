@@ -7,7 +7,5 @@
 
 package framework.cards;
 
-
 public class ActivateData {
-
 }
