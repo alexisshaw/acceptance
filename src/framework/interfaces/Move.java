@@ -105,7 +105,7 @@ public interface Move {
      * <ul>
      * <li>the appropriate action die will have been used</li>
      * <li>the correct amount of sestertii will have been added to the
-     * player's money</li>
+     * player's Sestertii</li>
      * </ul>
      * </p>
      *
@@ -156,8 +156,8 @@ public interface Move {
      * <li>the selected card is removed from the current player's hand
      * </li>
      * <li>the selected card will be present on the dice disc</li>
-     * <li>the required amount of money will have been deducted from the
-     * player's hand</li>
+     * <li>the required amount of Sestertii will have been deducted from
+     * the player's hand</li>
      * <li>any extra changes specific to the placed card will be in
      * effect</li>
      * </ul>
@@ -168,7 +168,7 @@ public interface Move {
      * <ul>
      * <li>the player's hand doesn't contain a card of the given
      * type</li>
-     * <li>the player has insufficient money to place the given
+     * <li>the player has insufficient Sestertii to place the given
      * card</li>
      * <li>the dice disc is not valid for the current game</li>
      * </ul>
