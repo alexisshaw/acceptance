@@ -8,7 +8,7 @@
  * @since 05.04.2012
  */
 
-package framework;
+package framework.interfaces;
 
 public interface AcceptanceInterface {
    /**
