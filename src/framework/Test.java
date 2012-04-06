@@ -2,6 +2,7 @@ package framework;
 
 import framework.interfaces.GameState;
 import framework.interfaces.Move;
+import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import javax.naming.OperationNotSupportedException;
 
@@ -15,20 +16,27 @@ import javax.naming.OperationNotSupportedException;
  * When the tester runs, it will call your test's run method. The
  * parameters of this method contain a GameState, and a Move. You can
  * manipulate these to be in any legal state, and check it changes
- * correctly when you make a move.
+ * correctly when you make a move. The GameState given will be be in
+ * the initial Roma Game condition.
  * </p>
  *
  * <p>
- * While running your tests, you can print relevant information for the
- * user. Don't print to System.out. Tests which do print to System.out
- * will not be accepted. Instead, print to this.out. The tester will
- * handle that output as appropriate.
+ * The tester will take care of printing a lot of information for you.
+ * This includes your short description, so make sure it gives enough
+ * information to show what the test is about. Also name your class
+ * something appropriate, as this will also be printed. Any method you
+ * call in the Move interface will also be printed, along with its
+ * arguments.<br/>
+ * If you do need to print miscellaneous information, <b> do not print
+ * to {@code System.out}! </b> Instead, print to {@code this.out}. The
+ * tester can then handle the printed text correctly.
  * </p>
  *
  * <p>
  * When you have written your test, either add it to the git repository
  * with a pull request, or email your tutorial acceptance
  * representative.
+ * </p>
  *
  * @author Benjamin James Wright (ben.wright)
  * @author Damon Stacey (damon.stacey)
@@ -36,12 +44,6 @@ import javax.naming.OperationNotSupportedException;
  * @author Lasath Fernando (lasath.fernando)
  */
 public abstract class Test {
-
-    PrintStream out;
-
-    Test(PrintStream out) {
-        this.out = out;
-    }
 
     /**
      * Returns a single line description of this test.
@@ -76,4 +78,18 @@ public abstract class Test {
                                                   throws AssertionError,
                                          OperationNotSupportedException,
                                                IllegalArgumentException;
+
+    /******************************************************************/
+    /*   Ignore everything below this line. This is for the tester!   */
+    /******************************************************************/
+
+    protected final PrintStream out;
+
+    public Test() {
+        this.out = new PrintStream(new ByteArrayOutputStream());
+    }
+
+    PrintStream getOutputSteam() {
+        return out;
+    }
 }
