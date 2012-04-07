@@ -1,8 +1,6 @@
 package framework;
 
 import framework.interfaces.AcceptanceInterface;
-import javax.naming.OperationNotSupportedException;
-import tests.stable.*;
 /**
  * Class to run several tests, and handle the results
  *
@@ -82,7 +80,7 @@ public class TestRunner {
                numTestFailed++;
                System.out.println (current.getOutputSteam());
                System.out.println("Test Failed");
-           } catch (OperationNotSupportedException e) {
+           } catch (UnsupportedOperationException e) {
                numNotImplemented++;
                System.out.println (current.getOutputSteam());
                System.out.println("Test Failed");
