@@ -3,9 +3,6 @@ package framework;
 import framework.interfaces.AcceptanceInterface;
 import javax.naming.OperationNotSupportedException;
 import tests.stable.*;
-import tests.testing.*;
-import tests.unstable.*;
-
 /**
  * Class to run several tests, and handle the results
  *
