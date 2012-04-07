@@ -1,31 +1,42 @@
-/**
- * This interface is required to be implemented by everyone you will
- * want to look at Move and GameState and be sure that you understand
- * how they work and how you can interface with them.
- * @author Benjamin James Wright (@ben.wright)
- * @author Damon Stacey (@damon.stacey)
- * @version 0.0.1
- * @since 05.04.2012
- */
-
 package framework.interfaces;
 
+/**
+ * This interface is required to be implemented by everyone you will
+ * want to look at MoveMaker and GameState and be sure that you understand
+ * how they work and how you can interface with them.
+ * herp
+ *
+ * @author Lasath Fernando (lasath.fernando)
+ * @author Benjamin James Wright (ben.wright)
+ * @author Damon Stacey (damon.stacey)
+ * @version 0.0.1
+ * @since 0.0.1
+ */
 public interface AcceptanceInterface {
-   /**
-    * Create a new game in a state.
-    * @param state the GameState to set.
-    */
-   public void setState(GameState state);
 
    /**
-    * Requests a specific move from your game.
-    * @param myMove the move to make.
+    * Return a {@link MoveMaker} associated with the given GameState.
+    *
+    * @param state the GameState that the mover will apply changes to
+    *
+    * @return a MoveMaker that will modify the given GameState
     */
-   public void takeTurn(Move myMove);
+   public MoveMaker getMover(GameState state);
 
    /**
-    * Return the current state of the game.
-    * @return GameState the state of the game.
+    * Instantiate a {@link GameState} object.
+    *
+    * <p>
+    * The created GameState should be a mutable new instance as this is called
+    * before each test is run.
+    * </p>
+    *
+    * <p>
+    * The state should be set in the initial condition as defined per:
+    * TODO: add the crap that makes an initial state here.
+    * </p>
+    *
+    * @return
     */
-   public GameState getState();
+   public GameState getInitialState();
 }
