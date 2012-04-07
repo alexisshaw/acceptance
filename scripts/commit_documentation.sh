@@ -10,7 +10,7 @@ PROJECT_ROOT="`dirname $(pwd)`"
 # The location of the package.
 PACKAGE_PATH="$PROJECT_ROOT/src/"
 # The name of the package.
-PACKAGE_NAME=framework
+PACKAGE_NAME="framework framework.cards framework.interfaces"
 # Get the javadoc version.
 JAVADOC_VERSION="`javadoc -J-fullversion | head -1`"
 # Create a temporary directory to place the new documentation in.
