@@ -19,9 +19,9 @@ public class ExampleTest extends Test {
 
     @Override
     public void run(GameState gameState, MoveMaker move)
-                                        throws AssertionError,
-                                        OperationNotSupportedException,
-                                        IllegalArgumentException {
+                                          throws AssertionError,
+                                          UnsupportedOperationException,
+                                          IllegalArgumentException {
 
         // You shouldn't need to print anything in your tests. The
         // tester will take care of printing:

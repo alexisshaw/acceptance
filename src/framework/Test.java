@@ -4,7 +4,6 @@ import framework.interfaces.GameState;
 import framework.interfaces.MoveMaker;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import javax.naming.OperationNotSupportedException;
 
 /**
  * Provides a template for writing tests for Roma.
@@ -71,12 +70,12 @@ public abstract class Test {
      * @param gameState an initial GameState to change and check
      * @param move a MoveMaker interface for you to call
      * @throws AssertionError on test failure
-     * @throws OperationNotSupportedException on unimplemented features
+     * @throws UnsupportedOperationException on unimplemented features
      * @throws IllegalArgumentException on invalid tests
      */
     public abstract void run (GameState gameState, MoveMaker move)
                                                   throws AssertionError,
-                                         OperationNotSupportedException,
+                                          UnsupportedOperationException,
                                                IllegalArgumentException;
 
     /******************************************************************/
