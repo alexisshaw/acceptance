@@ -27,7 +27,7 @@ pushd "$PROJECT_ROOT"
 # Checkout github pages.
 git checkout gh-pages
 # Move the java documentation from the tmp file to the project documentaiton.
-mv "$javadoc_tmp/"* "doc/"
+cp -r "$javadoc_tmp/"* "doc/"
 # Commit the updated documentation.
 echo "[Documentation] - Commiting the new documentation to gh-pages branch"
 # Add the files to the documentation.
