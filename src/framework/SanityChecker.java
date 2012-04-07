@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package framework;
 
 import framework.cards.ActivateData;
@@ -12,11 +7,13 @@ import framework.interfaces.MoveMaker;
 import java.io.PrintStream;
 
 /**
+ * Wrapper for a testee's MoveMaker, to ensure no invalid moves are
+ * given.
  *
- * @author Lasath Fernando <edu@lasath.org>
- * @author Matthew Moss
+ * @author Lasath Fernando (lasath.fernando)
+ * @author Matthew Moss (matthew.moss)
  */
-public class SanityChecker implements MoveMaker {
+class SanityChecker implements MoveMaker {
     private MoveMaker mover;
     private GameState gameState;
     private PrintStream out;
