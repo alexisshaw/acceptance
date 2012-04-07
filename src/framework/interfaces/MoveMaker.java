@@ -25,7 +25,7 @@ import framework.cards.Card;
  * @author Matthew Moss (matthew.moss)
  * @author Lasath Fernando (lasath.fernando)
  */
-public interface Move {
+public interface MoveMaker {
 
     /**
      * Activate the card that is currently on the given dice disc.

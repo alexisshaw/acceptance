@@ -2,7 +2,7 @@ package tests.stable;
 
 import framework.Test;
 import framework.interfaces.GameState;
-import framework.interfaces.Move;
+import framework.interfaces.MoveMaker;
 import javax.naming.OperationNotSupportedException;
 
 /**
@@ -18,7 +18,7 @@ public class ExampleTest extends Test {
     }
 
     @Override
-    public void run(GameState gameState, Move move)
+    public void run(GameState gameState, MoveMaker move)
                                         throws AssertionError,
                                         OperationNotSupportedException,
                                         IllegalArgumentException {
@@ -27,7 +27,7 @@ public class ExampleTest extends Test {
         // tester will take care of printing:
         // - the class name and discription of the test
         // - whether the test succeeds or fails
-        // - any methods called in the Move interface, with arguments
+        // - any methods called in the MoveMaker interface, with arguments
         // If you do need to print, never print to System.out!
         // Only print to this.out.
         out.println("This is just an example");
@@ -35,7 +35,7 @@ public class ExampleTest extends Test {
         // Set up the GameState for the test
         gameState.setWhoseTurn(0);
 
-        // Do something in the game with the Move interface
+        // Do something in the game with the MoveMaker interface
         move.endTurn();
 
         // Check the GameState responded as expected

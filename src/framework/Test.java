@@ -1,7 +1,7 @@
 package framework;
 
 import framework.interfaces.GameState;
-import framework.interfaces.Move;
+import framework.interfaces.MoveMaker;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import javax.naming.OperationNotSupportedException;
@@ -14,7 +14,7 @@ import javax.naming.OperationNotSupportedException;
  * <p>
  * Writing a test for Roma is as simple as implementing this class.
  * When the tester runs, it will call your test's run method. The
- * parameters of this method contain a GameState, and a Move. You can
+ * parameters of this method contain a GameState, and a MoveMaker. You can
  * manipulate these to be in any legal state, and check it changes
  * correctly when you make a move. The GameState given will be be in
  * the initial Roma Game condition.
@@ -25,7 +25,7 @@ import javax.naming.OperationNotSupportedException;
  * This includes your short description, so make sure it gives enough
  * information to show what the test is about. Also name your class
  * something appropriate, as this will also be printed. Any method you
- * call in the Move interface will also be printed, along with its
+ * call in the MoveMaker interface will also be printed, along with its
  * arguments.<br/>
  * If you do need to print miscellaneous information, <b> do not print
  * to {@code System.out}! </b> Instead, print to {@code this.out}. The
@@ -53,7 +53,7 @@ public abstract class Test {
     public abstract String getShortDescription();
 
     /**
-     * Runs this test against the given gameState and Move.
+     * Runs this test against the given gameState and MoveMaker.
      *
      * <p>
      * Information about the current test should be written to this.out.
@@ -69,12 +69,12 @@ public abstract class Test {
      * </p>
      *
      * @param gameState an initial GameState to change and check
-     * @param move a Move interface for you to call
+     * @param move a MoveMaker interface for you to call
      * @throws AssertionError on test failure
      * @throws OperationNotSupportedException on unimplemented features
      * @throws IllegalArgumentException on invalid tests
      */
-    public abstract void run (GameState gameState, Move move)
+    public abstract void run (GameState gameState, MoveMaker move)
                                                   throws AssertionError,
                                          OperationNotSupportedException,
                                                IllegalArgumentException;
