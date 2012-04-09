@@ -1,4 +1,4 @@
-package framework.interfaces;
+package framework.interfaces.activators;
 
 /**
  * A component of the CardActivator family.

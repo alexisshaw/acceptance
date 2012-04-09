@@ -1,4 +1,4 @@
-package framework.interfaces;
+package framework.interfaces.activators;
 
 import framework.cards.Card;
 
