@@ -1,6 +1,13 @@
 package framework;
 
 import framework.interfaces.AcceptanceInterface;
+import framework.interfaces.GameState;
+import framework.interfaces.MoveMaker;
+import java.lang.reflect.Method;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  * Class to run several tests, and handle the results
  *
@@ -36,35 +43,47 @@ public class TestRunner {
    public static void main (String[] args) {
 
        TestRunner runner = new TestRunner();
-
        runner.doYourThing();
    }
 
     private void doYourThing() {
+        try {
+
               System.out.println ("Roma acceptance tests starting...");
-      boolean assertionsEnabled = false;
-      try {
-         assert (false);
-      } catch (AssertionError e) {
-         assertionsEnabled = true;
-      }
-      boolean failed = false;
-      if (!assertionsEnabled) {
-         System.out.println ("Please enable assertions, run with java -ea");
-         failed = true;
-      } else {
-         // step thru all the tests one at a time
-          runTests (getTrueTests());
-          runTests (getBorderlineTests());
-          runTests (getUnverifiedTests());
-      }
-      if (failed) {
-         System.out.println ("FAILED");
-         System.out.println ("Not accepted!");
-      } else {
-         System.out.println ("ACCEPTED");
-         System.out.println ("You are awesome!");
-      }
+              boolean assertionsEnabled = false;
+              try {
+                 assert (false);
+              } catch (AssertionError e) {
+                 assertionsEnabled = true;
+              }
+              boolean failed = false;
+              if (!assertionsEnabled) {
+                 System.out.println ("Please enable assertions, run with java -ea");
+                 failed = true;
+              } else {
+                 // step thru all the tests one at a time
+                  runTests (getTrueTests());
+                  runTests (getBorderlineTests());
+                  runTests (getUnverifiedTests());
+              }
+              if (failed) {
+                 System.out.println ("FAILED");
+                 System.out.println ("Not accepted!");
+              } else {
+                 System.out.println ("ACCEPTED");
+                 System.out.println ("You are awesome!");
+              }
+        } catch (InstantiationException ex) {
+            Logger.getLogger(TestRunner.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(TestRunner.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchMethodException ex) {
+            Logger.getLogger(TestRunner.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SecurityException ex) {
+            Logger.getLogger(TestRunner.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TestRunner.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
        private void runTests (Test[] tests) {
