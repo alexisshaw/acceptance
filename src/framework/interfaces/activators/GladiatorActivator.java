@@ -2,12 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package framework.interfaces;
+package framework.interfaces.activators;
 
 /**
  *
  * @author Matt
  */
-public interface PraetorianusActivator extends Targeted {
+public interface GladiatorActivator extends Targeted {
 
 }
