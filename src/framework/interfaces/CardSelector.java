@@ -1,12 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package framework.interfaces;
 
 /**
+ * A component of the CardActivator family.
  *
- * @author Matt
+ * @author Matthew Moss (matthew.moss)
+ * @author Lasath Fernando (lasath.fernando)
  */
 public interface CardSelector {
 

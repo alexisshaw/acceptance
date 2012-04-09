@@ -7,8 +7,10 @@ package framework.interfaces;
 import framework.cards.Card;
 
 /**
+ * A component of the CardActivator family.
  *
- * @author Matt
+ * @author Matthew Moss (matthew.moss)
+ * @author Lasath Fernando (lasath.fernando)
  */
 public interface Rearranger {
 
