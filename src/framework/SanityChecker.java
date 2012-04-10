@@ -5,6 +5,7 @@ import framework.cards.Card;
 import framework.interfaces.GameState;
 import framework.interfaces.MoveMaker;
 import java.io.PrintStream;
+import java.util.Collection;
 
 /**
  * Wrapper for a testee's MoveMaker, to ensure no invalid moves are
@@ -41,7 +42,7 @@ class SanityChecker implements MoveMaker {
             throw new IllegalArgumentException("ActivateData Parameters is Null");
         }
 
-        // if everyhing checks out, actually call the method
+        // if everything checks out, actually call the method
         mover.activateCard(disc, parameters);
     }
 
@@ -57,11 +58,25 @@ class SanityChecker implements MoveMaker {
 
     @Override
     public void endTurn() throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        // endTurn is always a sane thing to call
+        mover.endTurn();
     }
 
     @Override
     public void placeCard(Card toPlace, int discToPlaceOn) throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not supported yet.");
+    	
+    	// check that the player's hand has a card of this type
+    	Collection<Card> hand = gameState.getPlayerHand(gameState.getWhoseTurn());
+    	boolean found = false;
+    	for (Card card : hand) {
+    		if (toPlace == card) {
+    			found = true;
+    		}
+    	}
+    	if (!found) {
+    		throw new IllegalArgumentException("Player doesn't have " + toPlace);
+    	}
+    	
+    	//throw new UnsupportedOperationException("Not supported yet.");
     }
 }
