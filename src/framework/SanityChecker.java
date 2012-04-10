@@ -78,5 +78,6 @@ class SanityChecker implements MoveMaker {
     	}
     	
     	//throw new UnsupportedOperationException("Not supported yet.");
+    	mover.placeCard(toPlace, discToPlaceOn);
     }
 }
