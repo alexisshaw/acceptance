@@ -65,19 +65,33 @@ class SanityChecker implements MoveMaker {
     @Override
     public void placeCard(Card toPlace, int discToPlaceOn) throws UnsupportedOperationException {
     	
+    	int currentPlayer = gameState.getWhoseTurn();
+    	
     	// check that the player's hand has a card of this type
-    	Collection<Card> hand = gameState.getPlayerHand(gameState.getWhoseTurn());
-    	boolean found = false;
+    	Collection<Card> hand = gameState.getPlayerHand(currentPlayer);
+    	if (!cardExists(toPlace, hand)) {
+    		throw new IllegalArgumentException("Player doesn't have " + toPlace);
+    	}
+    	
+    	// check that the player has sufficient sestertii to place the card
+    	if (gameState.getPlayerSestertii(currentPlayer) < 0 ) { //TODO: @luke.cameron doesn't know how to get a card's cost
+    		throw new IllegalArgumentException("Player doesn't have sufficient sestertii ");
+    	}
+    	
+    	
+    	// check that the dice disc is valid for the current game
+    	
+    	
+    	mover.placeCard(toPlace, discToPlaceOn);
+    }
+
+	private boolean cardExists(Card toPlace, Collection<Card> hand) {
+		boolean found = false;
     	for (Card card : hand) {
     		if (toPlace == card) {
     			found = true;
     		}
     	}
-    	if (!found) {
-    		throw new IllegalArgumentException("Player doesn't have " + toPlace);
-    	}
-    	
-    	//throw new UnsupportedOperationException("Not supported yet.");
-    	mover.placeCard(toPlace, discToPlaceOn);
-    }
+		return found;
+	}
 }
