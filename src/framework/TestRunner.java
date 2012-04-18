@@ -4,6 +4,10 @@ import framework.interfaces.AcceptanceInterface;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import tests.verified.*;
+import tests.borderline.*;
+import tests.unverified.*;
+
 
 /**
  * Class to run several tests, and handle the results
@@ -33,7 +37,9 @@ public class TestRunner {
 
     private static Test[] getVerifiedTests() {
 
-        return new Test[]{};
+        return new Test[]{
+            new ExampleTest()
+        };
     }
 
     public static void main(String[] args) {
