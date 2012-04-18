@@ -82,13 +82,15 @@ public abstract class Test {
     /*   Ignore everything below this line. This is for the tester!   */
     /******************************************************************/
 
-    protected final PrintStream out;
+    protected final PrintStream   out;
+    private ByteArrayOutputStream buffer;
 
     public Test() {
-        this.out = new PrintStream(new ByteArrayOutputStream());
+        buffer = new ByteArrayOutputStream();
+        this.out = new PrintStream(buffer);
     }
 
-    PrintStream getOutputSteam() {
-        return out;
+    String getOutputSteam() {
+        return buffer.toString();
     }
 }
