@@ -3,7 +3,6 @@ package framework;
 import framework.interfaces.AcceptanceInterface;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.security.auth.login.AccountLockedException;
 
 
 /**
@@ -40,14 +39,10 @@ public class TestRunner {
     public static void main(String[] args) {
 
         TestRunner runner = new TestRunner();
-        try {
-            runner.doYourThing();
-        } catch (AccountLockedException ex) {
-            Logger.getLogger(TestRunner.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        runner.doYourThing();
     }
 
-    private void doYourThing() throws AccountLockedException {
+    private void doYourThing() {
         System.out.println("Roma acceptance tests starting...");
 
         boolean assertionsEnabled = false;
