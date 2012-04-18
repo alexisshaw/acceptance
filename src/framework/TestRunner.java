@@ -48,7 +48,7 @@ public class TestRunner {
         runner.testGame();
     }
 
-    private void testGame() {
+    public void testGame() {
         System.out.println("Roma acceptance tests starting...");
 
         boolean assertionsEnabled = false;
