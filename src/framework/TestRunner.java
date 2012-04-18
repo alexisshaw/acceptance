@@ -1,6 +1,9 @@
 package framework;
 
 import framework.interfaces.AcceptanceInterface;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.security.auth.login.AccountLockedException;
 
 
 /**
@@ -37,10 +40,14 @@ public class TestRunner {
     public static void main(String[] args) {
 
         TestRunner runner = new TestRunner();
-        runner.doYourThing();
+        try {
+            runner.doYourThing();
+        } catch (AccountLockedException ex) {
+            Logger.getLogger(TestRunner.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    private void doYourThing() {
+    private void doYourThing() throws AccountLockedException {
         System.out.println("Roma acceptance tests starting...");
 
         boolean assertionsEnabled = false;
@@ -84,19 +91,22 @@ public class TestRunner {
                 numTestsPassed++;
                 System.out.println("Test passed");
 
-            } catch (AssertionError e) {
-                numTestFailed++;
-                System.out.println(current.getOutputSteam());
-                System.out.println("Test Failed");
-
-            } catch (UnsupportedOperationException e) {
+            } catch (UnsupportedOperationException ex) {
                 numNotImplemented++;
-                System.out.println(current.getOutputSteam());
-                System.out.println("Test Failed");
+                System.out.println("Feature not implemented yet. Skipping test...");
 
-            } catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException ex) {
                 numInvalidTests++;
                 System.out.println(current.getOutputSteam());
+                Logger.getLogger(TestRunner.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Error in test. Please report this to your "
+                        + "representative.");
+
+            } catch (Exception ex) {
+                numTestFailed++;
+                System.out.println(current.getOutputSteam());
+                Logger.getLogger(TestRunner.class.getName()).log(Level.SEVERE, null, ex);
+
                 System.out.println("Test Failed");
             }
         }
