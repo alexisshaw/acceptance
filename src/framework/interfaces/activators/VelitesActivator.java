@@ -6,7 +6,8 @@ package framework.interfaces.activators;
 
 /**
  *
- * @author Matt
+ * @author Lasath Fernando (lasath.fernando)
+ * @author Matthew Moss (matthew.moss)
  */
 public interface VelitesActivator extends Targeted, Attacker{
 
