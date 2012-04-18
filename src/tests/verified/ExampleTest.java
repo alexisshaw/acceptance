@@ -1,4 +1,4 @@
-package tests.stable;
+package tests.verified;
 
 import framework.Test;
 import framework.interfaces.GameState;

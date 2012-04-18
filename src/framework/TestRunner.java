@@ -2,9 +2,6 @@ package framework;
 
 import framework.interfaces.AcceptanceInterface;
 
-import tests.stable.*;
-import tests.testing.*;
-import tests.unstable.*;
 
 /**
  * Class to run several tests, and handle the results
@@ -32,7 +29,7 @@ public class TestRunner {
         return new Test[]{};
     }
 
-    private static Test[] getTrueTests() {
+    private static Test[] getVerifiedTests() {
 
         return new Test[]{};
     }
@@ -59,7 +56,7 @@ public class TestRunner {
             failed = true;
         } else {
             // step through all the tests one at a time
-            runTests(getTrueTests());
+            runTests(getVerifiedTests());
             runTests(getBorderlineTests());
             runTests(getUnverifiedTests());
 
