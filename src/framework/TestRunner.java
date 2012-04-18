@@ -39,10 +39,10 @@ public class TestRunner {
     public static void main(String[] args) {
 
         TestRunner runner = new TestRunner();
-        runner.doYourThing();
+        runner.testGame();
     }
 
-    private void doYourThing() {
+    private void testGame() {
         System.out.println("Roma acceptance tests starting...");
 
         boolean assertionsEnabled = false;
