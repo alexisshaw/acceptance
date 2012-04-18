@@ -1,7 +1,7 @@
 package framework.interfaces;
 
-import framework.cards.ActivateData;
 import framework.cards.Card;
+import framework.interfaces.activators.CardActivator;
 
 /**
  * This interface defines all possible actions a theoretical player
@@ -30,15 +30,7 @@ public interface MoveMaker {
     /**
      * Activate the card that is currently on the given dice disc.
      *
-     * <p>
-     * After this method is called:
-     * <ul>
-     * <li>the appropriate action dice will have been used</li>
-     * <li>any activation effects from the card will have been carried
-     * out</li>
-     * <li>if appropriate, the card will have been discarded</li>
-     * </ul>
-     * </p>
+     * TODO: fix dis shit
      *
      * <p>
      * This will never be called if:
@@ -58,7 +50,7 @@ public interface MoveMaker {
      * @throws UnsupportedOperationException if the move is not yet
      * implemented
      */
-    public void activateCard(int disc, ActivateData parameters)
+    public CardActivator chooseCardToActivate(int disc)
                                    throws UnsupportedOperationException;
 
     /**

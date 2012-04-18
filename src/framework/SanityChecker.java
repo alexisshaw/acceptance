@@ -1,9 +1,9 @@
 package framework;
 
-import framework.cards.ActivateData;
 import framework.cards.Card;
 import framework.interfaces.GameState;
 import framework.interfaces.MoveMaker;
+import framework.interfaces.activators.CardActivator;
 import java.io.PrintStream;
 
 /**
@@ -24,26 +24,26 @@ class SanityChecker implements MoveMaker {
         this.out = out;
     }
 
-    @Override
-    public void activateCard(int disc, ActivateData parameters) {
-        // print out all the arguments
-        // the format of this string will need to be agreed/decided soon
-        out.println("Calling MoveMaker.activateCard(");
-        out.println("\tdisc = " + disc);
-        out.println("\tparameters = " + parameters);
-        out.println(")");
-
-        // do whatever checks are necessary to ensure that the move is valid
-        // in this.gameState
-        // whatever checks are done here will have to be documented in the
-        // MoveMaker interface
-        if (parameters == null) {
-            throw new IllegalArgumentException("ActivateData Parameters is Null");
-        }
-
-        // if everyhing checks out, actually call the method
-        mover.activateCard(disc, parameters);
-    }
+//    @Override
+//    public CardActivator chooseCardToActivate(int disc) {
+//        // print out all the arguments
+//        // the format of this string will need to be agreed/decided soon
+//        out.println("Calling MoveMaker.activateCard(");
+//        out.println("\tdisc = " + disc);
+//        out.println("\tparameters = " + parameters);
+//        out.println(")");
+//
+//        // do whatever checks are necessary to ensure that the move is valid
+//        // in this.gameState
+//        // whatever checks are done here will have to be documented in the
+//        // MoveMaker interface
+//        if (parameters == null) {
+//            throw new IllegalArgumentException("ActivateData Parameters is Null");
+//        }
+//
+//        // if everyhing checks out, actually call the method
+//        mover.chooseCardToActivate(disc, parameters);
+//    }
 
     @Override
     public void activateCardsDisc(int diceToUse, Card chosen) throws UnsupportedOperationException {
@@ -62,6 +62,11 @@ class SanityChecker implements MoveMaker {
 
     @Override
     public void placeCard(Card toPlace, int discToPlaceOn) throws UnsupportedOperationException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public CardActivator chooseCardToActivate(int disc) throws UnsupportedOperationException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }
