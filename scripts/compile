@@ -17,7 +17,7 @@ mkdir -p $BUILD_DIR
 pushd $SRC_DIR
 # this will automatically compile any imported files whose source
 # has modified since last compile.
-javac -source 1.6 -d $BUILD_DIR -sourcepath . framework/Tester.java
+javac -source 1.6 -d $BUILD_DIR -sourcepath . framework/TestRunner.java
 popd
 
 echo Compilation Complete!

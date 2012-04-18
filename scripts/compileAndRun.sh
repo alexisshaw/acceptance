@@ -6,5 +6,5 @@
 
 . compile
 
-CLASSPATH="$BUILD_DIR" java -ea framework.Tester
+CLASSPATH="$BUILD_DIR" java -ea framework.TestRunner
 
