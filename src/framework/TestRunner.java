@@ -8,6 +8,11 @@ import tests.verified.*;
 import tests.borderline.*;
 import tests.unverified.*;
 
+import org.reflections.Reflections;
+
+import javax.naming.OperationNotSupportedException;
+import java.lang.reflect.Constructor;
+import java.util.Set;
 
 /**
  * Class to run several tests, and handle the results
@@ -16,6 +21,7 @@ import tests.unverified.*;
  * @author Lasath Fernando (lasath.fernando)
  * @author Benjamin James Wright (ben.wright)
  * @author Damon Stacey (damon.stacey)
+ * @author Alexis Shaw (alexis.shaw)
  */
 public class TestRunner {
 
@@ -25,27 +31,57 @@ public class TestRunner {
     int numNotImplemented = 0;
     int numInvalidTests = 0;
 
-    private static Test[] getUnverifiedTests() {
 
-        return new Test[]{};
+    private static Test[] getUnverifiedTests() {
+        return getTestsInPackage("tests.unverified");
     }
 
     private static Test[] getBorderlineTests() {
-
-        return new Test[]{};
+        return getTestsInPackage("tests.borderline");
     }
 
     private static Test[] getVerifiedTests() {
-
-        return new Test[]{
-            new ExampleTest()
-        };
+        return getTestsInPackage("tests.verified");
     }
 
-    public static void main(String[] args) {
+    private static Test[] getTestsInPackage(String packageName){
+        Reflections reflections = new Reflections(packageName);
+        Set<Class<? extends Test>> testClasses = reflections.getSubTypesOf(Test.class);
 
-        TestRunner runner = new TestRunner();
-        runner.testGame();
+        Test[] returnValue = new Test[testClasses.size()];
+        int NumClassesWithEmptyConstructor = 0;
+        for(Class<? extends Test> testClass : testClasses){
+             try{
+                Constructor<? extends Test> testConstructor = testClass.getConstructor();
+                returnValue[NumClassesWithEmptyConstructor] = testConstructor.newInstance();
+                NumClassesWithEmptyConstructor++;
+            } catch (Exception e){}
+        }
+        assert(NumClassesWithEmptyConstructor == testClasses.size());
+
+        return returnValue;
+    }
+    private static AcceptanceInterface[] getAcceptanceInterfacesInPackage(packageName){
+        Reflections reflections = new Reflections(packageName);
+        Set<Class<? implements AcceptanceInterface>> acceptanceInterfaceClasses = 
+                    reflections.getSubTypesOf(AcceptanceInterface.class);
+        AcceptanceInterface[] returnValue = new AcceptanceInterface[acceptanceInterfaceClasses.size()];
+        int noClassesWithEmptyConstructor = 0;
+        for(Class<? implements AcceptanceInterface> acceptanceInterfaceClass:acceptanceInterfaceClasses){
+            try{            
+                Constructor<? implements AcceptanceInterface> acceptanceInterfaceConstructor = 
+                        acceptanceInterfaceClass.getConstructor();
+                returnValue[NumClassesWithEmptyConstructor] = acceptanceInterfaceConstructor.newInstance();
+                NumClassesWithEmptyConstructor++;
+            } catch (Exception e){}
+        }
+        assert(NumClassesWithEmptyConstructor == acceptanceInterfaceClasses.size());
+        return returnValue;
+    }
+
+    public static void main (String[] args) {
+         TestRunner runner = new TestRunner();
+         runner.testGame();
     }
 
     public void testGame() {
@@ -81,34 +117,39 @@ public class TestRunner {
     }
 
     private void runTests(Test[] tests) {
+        AcceptanceInterface[] acceptanceInterfaces = getAcceptanceInterfacesInPackage("");
+        assert(acceptanceInterfaces.length > 0)
+        for (AcceptanceInterface acceptanceInterface: acceptanceInterfaces){
+            for (Test current : tests) {
+                try {
+                    System.out.println("Running Test " + current.getClass() + ":");
+                    System.out.println("\t" + current.getShortDescription());
 
-        for (Test current : tests) {
-            try {
-                System.out.println("Running Test " + current.getClass() + ":");
-                System.out.println("\t" + current.getShortDescription());
+                    GameState state = acceptanceInterface.getInitialState();
+                    MoveMaker mover = accertanceInterface.getMover(state);
+                    current.run(state,mover);
+ 
+                    numTestsPassed++;
+                    System.out.println("Test passed");
 
-                current.run(null, null);
+                } catch (UnsupportedOperationException ex) {
+                    numNotImplemented++;
+                    System.out.println("Feature not implemented yet. Skipping test...");
+ 
+                } catch (IllegalArgumentException ex) {
+                    numInvalidTests++;
+                    System.out.println(current.getOutputSteam());
+                    Logger.getLogger(TestRunner.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println("Error in test. Please report this to your "
+                            + "representative.");
+    
+                } catch (Exception ex) {
+                    numTestFailed++;
+                    System.out.println(current.getOutputSteam());
+                    Logger.getLogger(TestRunner.class.getName()).log(Level.SEVERE, null, ex);
 
-                numTestsPassed++;
-                System.out.println("Test passed");
-
-            } catch (UnsupportedOperationException ex) {
-                numNotImplemented++;
-                System.out.println("Feature not implemented yet. Skipping test...");
-
-            } catch (IllegalArgumentException ex) {
-                numInvalidTests++;
-                System.out.println(current.getOutputSteam());
-                Logger.getLogger(TestRunner.class.getName()).log(Level.SEVERE, null, ex);
-                System.out.println("Error in test. Please report this to your "
-                        + "representative.");
-
-            } catch (Exception ex) {
-                numTestFailed++;
-                System.out.println(current.getOutputSteam());
-                Logger.getLogger(TestRunner.class.getName()).log(Level.SEVERE, null, ex);
-
-                System.out.println("Test Failed");
+                    System.out.println("Test Failed");
+                }
             }
         }
     }
