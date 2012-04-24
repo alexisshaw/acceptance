@@ -33,32 +33,49 @@ public class TestRunner {
 
 
     private static Test[] getUnverifiedTests() {
-         return getTestsInPackage("tests.unverified");
+        return getTestsInPackage("tests.unverified");
     }
 
     private static Test[] getBorderlineTests() {
-         return getTestsInPackage("tests.borderline");
+        return getTestsInPackage("tests.borderline");
     }
 
     private static Test[] getVerifiedTests() {
-         return getTestsInPackage("tests.verified");
+        return getTestsInPackage("tests.verified");
     }
 
     private static Test[] getTestsInPackage(String packageName){
-         Reflections reflections = new Reflections(packageName);
-         Set<Class<? extends Test>> testClasses = reflections.getSubTypesOf(Test.class);
+        Reflections reflections = new Reflections(packageName);
+        Set<Class<? extends Test>> testClasses = reflections.getSubTypesOf(Test.class);
 
-         Test[] returnValue = new Test[testClasses.size()];
-         int NumClassesWithEmptyConstructor = 0;
-         for(Class<? extends Test> testClass : testClasses){
+        Test[] returnValue = new Test[testClasses.size()];
+        int NumClassesWithEmptyConstructor = 0;
+        for(Class<? extends Test> testClass : testClasses){
              try{
-                 Constructor<? extends Test> testConstructor = testClass.getConstructor();
-                 returnValue[NumClassesWithEmptyConstructor] = testConstructor.newInstance();
-                 NumClassesWithEmptyConstructor++;
-             } catch (Exception e){}
-         }
-         assert(NumClassesWithEmptyConstructor == testClasses.size());
+                Constructor<? extends Test> testConstructor = testClass.getConstructor();
+                returnValue[NumClassesWithEmptyConstructor] = testConstructor.newInstance();
+                NumClassesWithEmptyConstructor++;
+            } catch (Exception e){}
+        }
+        assert(NumClassesWithEmptyConstructor == testClasses.size());
 
+        return returnValue;
+    }
+    private static AcceptanceInterface[] getAcceptanceInterfacesInPackage(packageName){
+        Reflections reflections = new Reflections(packageName);
+        Set<Class<? implements AcceptanceInterface>> acceptanceInterfaceClasses = 
+                    reflections.getSubTypesOf(AcceptanceInterface.class);
+        AcceptanceInterface[] returnValue = new AcceptanceInterface[acceptanceInterfaceClasses.size()];
+        int noClassesWithEmptyConstructor = 0;
+        for(Class<? implements AcceptanceInterface> acceptanceInterfaceClass:acceptanceInterfaceClasses){
+            try{            
+                Constructor<? implements AcceptanceInterface> acceptanceInterfaceConstructor = 
+                        acceptanceInterfaceClass.getConstructor();
+                returnValue[NumClassesWithEmptyConstructor] = acceptanceInterfaceConstructor.newInstance();
+                NumClassesWithEmptyConstructor++;
+            } catch (Exception e){}
+        }
+        assert(NumClassesWithEmptyConstructor == acceptanceInterfaceClasses.size());
         return returnValue;
     }
 
@@ -100,34 +117,39 @@ public class TestRunner {
     }
 
     private void runTests(Test[] tests) {
+        AcceptanceInterface[] acceptanceInterfaces = getAcceptanceInterfacesInPackage("");
+        assert(acceptanceInterfaces.length > 0)
+        for (AcceptanceInterface acceptanceInterface: acceptanceInterfaces){
+            for (Test current : tests) {
+                try {
+                    System.out.println("Running Test " + current.getClass() + ":");
+                    System.out.println("\t" + current.getShortDescription());
 
-        for (Test current : tests) {
-            try {
-                System.out.println("Running Test " + current.getClass() + ":");
-                System.out.println("\t" + current.getShortDescription());
+                    GameState state = acceptanceInterface.getInitialState();
+                    MoveMaker mover = accertanceInterface.getMover(state);
+                    current.run(state,mover);
+ 
+                    numTestsPassed++;
+                    System.out.println("Test passed");
 
-                current.run(null, null);
+                } catch (UnsupportedOperationException ex) {
+                    numNotImplemented++;
+                    System.out.println("Feature not implemented yet. Skipping test...");
+ 
+                } catch (IllegalArgumentException ex) {
+                    numInvalidTests++;
+                    System.out.println(current.getOutputSteam());
+                    Logger.getLogger(TestRunner.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println("Error in test. Please report this to your "
+                            + "representative.");
+    
+                } catch (Exception ex) {
+                    numTestFailed++;
+                    System.out.println(current.getOutputSteam());
+                    Logger.getLogger(TestRunner.class.getName()).log(Level.SEVERE, null, ex);
 
-                numTestsPassed++;
-                System.out.println("Test passed");
-
-            } catch (UnsupportedOperationException ex) {
-                numNotImplemented++;
-                System.out.println("Feature not implemented yet. Skipping test...");
-
-            } catch (IllegalArgumentException ex) {
-                numInvalidTests++;
-                System.out.println(current.getOutputSteam());
-                Logger.getLogger(TestRunner.class.getName()).log(Level.SEVERE, null, ex);
-                System.out.println("Error in test. Please report this to your "
-                        + "representative.");
-
-            } catch (Exception ex) {
-                numTestFailed++;
-                System.out.println(current.getOutputSteam());
-                Logger.getLogger(TestRunner.class.getName()).log(Level.SEVERE, null, ex);
-
-                System.out.println("Test Failed");
+                    System.out.println("Test Failed");
+                }
             }
         }
     }
