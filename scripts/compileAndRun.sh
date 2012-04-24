@@ -6,9 +6,6 @@
 
 . compile
 
-<<<<<<< HEAD
-CLASSPATH="$BUILD_DIR" java -ea framework.TestRunner
-=======
 java -ea framework.TestRunner
 >>>>>>> Added name
 
