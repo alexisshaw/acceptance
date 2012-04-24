@@ -8,6 +8,11 @@ import tests.verified.*;
 import tests.borderline.*;
 import tests.unverified.*;
 
+import org.reflections.Reflections;
+
+import javax.naming.OperationNotSupportedException;
+import java.lang.reflect.Constructor;
+import java.util.Set;
 
 /**
  * Class to run several tests, and handle the results
@@ -16,6 +21,7 @@ import tests.unverified.*;
  * @author Lasath Fernando (lasath.fernando)
  * @author Benjamin James Wright (ben.wright)
  * @author Damon Stacey (damon.stacey)
+ * @author Alexis Shaw (alexis.shaw)
  */
 public class TestRunner {
 
@@ -25,27 +31,40 @@ public class TestRunner {
     int numNotImplemented = 0;
     int numInvalidTests = 0;
 
-    private static Test[] getUnverifiedTests() {
 
-        return new Test[]{};
+    private static Test[] getUnverifiedTests() {
+         return getTestsInPackage("tests.unverified");
     }
 
     private static Test[] getBorderlineTests() {
-
-        return new Test[]{};
+         return getTestsInPackage("tests.borderline");
     }
 
     private static Test[] getVerifiedTests() {
-
-        return new Test[]{
-            new ExampleTest()
-        };
+         return getTestsInPackage("tests.verified");
     }
 
-    public static void main(String[] args) {
+    private static Test[] getTestsInPackage(String packageName){
+         Reflections reflections = new Reflections(packageName);
+         Set<Class<? extends Test>> testClasses = reflections.getSubTypesOf(Test.class);
 
-        TestRunner runner = new TestRunner();
-        runner.testGame();
+         Test[] returnValue = new Test[testClasses.size()];
+         int NumClassesWithEmptyConstructor = 0;
+         for(Class<? extends Test> testClass : testClasses){
+             try{
+                 Constructor<? extends Test> testConstructor = testClass.getConstructor();
+                 returnValue[NumClassesWithEmptyConstructor] = testConstructor.newInstance();
+                 NumClassesWithEmptyConstructor++;
+             } catch (Exception e){}
+         }
+         assert(NumClassesWithEmptyConstructor == testClasses.size());
+
+        return returnValue;
+    }
+
+    public static void main (String[] args) {
+         TestRunner runner = new TestRunner();
+         runner.testGame();
     }
 
     public void testGame() {
