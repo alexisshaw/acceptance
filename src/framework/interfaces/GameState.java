@@ -196,7 +196,7 @@ public interface GameState {
     * @param playerNum which player's hand cards to set
     * @param hand the contents of the the player's hand
     */
-   public void getPlayerHand (int playerNum, Collection<Card> hand);
+   public void setPlayerHand (int playerNum, Collection<Card> hand);
 
    /**
     * Gets the cards currently laid on a player's dice discs.
