@@ -27,7 +27,7 @@ public class LegatBasicTest extends Test {
         // Set up the player stats
         gameState.setPlayerVictoryPoints(0, 10);
         gameState.setPlayerVictoryPoints(1, 10);
-        gameState.setPlayerSestertii(0, 0);
+        gameState.setPlayerSestertii(0, 5);
         gameState.setPlayerSestertii(1, 0);
 
         // Set up the game state for the test

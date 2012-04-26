@@ -27,7 +27,7 @@ public class TribunusPlebisBasicTest extends Test {
         // Set up the player stats
         gameState.setPlayerVictoryPoints(0, 10);
         gameState.setPlayerVictoryPoints(1, 10);
-        gameState.setPlayerSestertii(0, 0);
+        gameState.setPlayerSestertii(0, 10);
         gameState.setPlayerSestertii(1, 0);
 
         // Set up the game state for the test
@@ -42,7 +42,7 @@ public class TribunusPlebisBasicTest extends Test {
         // 1's score has not changed
         assert(gameState.getPlayerVictoryPoints(0) == 11);
         assert(gameState.getPlayerVictoryPoints(1) == 10);
-        assert(gameState.getPlayerSestertii(0) == 0);
+        assert(gameState.getPlayerSestertii(0) == 5);
         assert(gameState.getPlayerSestertii(1) == 0);
         
         // Place a tribunus plebis on the 4, to check that only the one 
