@@ -33,6 +33,11 @@ public class TribunusPlebisBasicTest extends Test {
         // Set up the game state for the test
         gameState.setWhoseTurn(0);
         gameState.setActionDice(new int [] {3, 3, 4});
+        
+        Collection<Card> hand = new ArrayList<Card>();
+        hand.add(TRIBUNUSPLEBIS);
+        hand.add(TRIBUNUSPLEBIS);
+        gameState.setPlayerHand(0, hand);
                 
         // Place the Tribunus Plebis on disc 3 and activate it
         move.placeCard(TRIBUNUSPLEBIS, 3);

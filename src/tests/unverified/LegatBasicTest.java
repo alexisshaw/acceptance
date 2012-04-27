@@ -33,8 +33,12 @@ public class LegatBasicTest extends Test {
         // Set up the game state for the test
         gameState.setWhoseTurn(0);
         gameState.setActionDice(new int [] {3, 3, 4});
+        
+        Collection<Card> hand = new ArrayList<Card>();
+        hand.add(LEGAT);
+        gameState.setPlayerHand(0, hand);
                 
-        // Place the Tribunus Plebis on disc 3 and activate it
+        // Place the Legat on disc 3 and activate it
         move.placeCard(LEGAT, 3);
         move.chooseCardToActivate(3);
         
