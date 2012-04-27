@@ -188,7 +188,7 @@ public interface GameState {
     * Sets the contents of a player's current Hand.
     *
     * <p>
-    * The contends of the hand of the specified player is given as an
+    * The contents of the hand of the specified player is given as an
     * unordered collection of Cards. Correct player indexing is
     * discussed in the GameState interface header.
     * </p>

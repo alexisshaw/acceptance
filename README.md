@@ -25,7 +25,7 @@ TODO
 Contributing
 -------------
 * If you are familiar with github:
-Send us a git pull request and we will review your change and imlement it
+Send us a git pull request and we will review your change and implement it
 if we feel it is a good / correct test. Provide reasoning, non trivial
 changes are prefered.
 ** If you want a challenge send a patch over mail to bwright@cse.unsw.edu.au
