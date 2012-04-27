@@ -26,7 +26,7 @@ public enum Card {
    MERCATUS ("Mercatus"),
    NERO ("Nero"),
    ONAGER ("Onager"),
-   PRAETORAINUS ("Praetorianus"),
+   PRAETORIANUS ("Praetorianus"),
    SCAENICUS ("Scaenicus"),
    SENATOR ("Senator"),
    SICARIUS ("Sicarius"),
