@@ -8,6 +8,7 @@ package framework.interfaces.activators;
  *
  * @author Lasath Fernando (lasath.fernando)
  * @author Matthew Moss (matthew.moss)
+ * @author Damon Stacey (damon.stacey)
  */
 public interface ConsulActivator {
 
@@ -21,4 +22,6 @@ public interface ConsulActivator {
      * @param amount the amount to change by.
      */
     void chooseConsulChangeAmount (int amount);
+
+    void chooseWhichDiceChanges(int originalRoll);
 }
