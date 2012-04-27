@@ -12,6 +12,7 @@ import javax.naming.OperationNotSupportedException;
  * Testing the basic mechanics of Tribunus Plebis.
  *
  * @author Karla Burnett (karla.burnett)
+ * @author Robert Cen (robert.cen)
  */
 public class TribunusPlebisBasicTest extends Test {
 
@@ -48,7 +49,7 @@ public class TribunusPlebisBasicTest extends Test {
         // Check that player 0 has gained a victory point, but player
         // 1's score has not changed
         assert(gameState.getPlayerVictoryPoints(0) == 11);
-        assert(gameState.getPlayerVictoryPoints(1) == 10);
+        assert(gameState.getPlayerVictoryPoints(1) == 9);
         assert(gameState.getPlayerSestertii(0) == 5);
         assert(gameState.getPlayerSestertii(1) == 0);
         
@@ -60,7 +61,7 @@ public class TribunusPlebisBasicTest extends Test {
         // Check that player 0 has gained a victory point, but player
         // 1's score has not changed
         assert(gameState.getPlayerVictoryPoints(0) == 12);
-        assert(gameState.getPlayerVictoryPoints(1) == 10);
+        assert(gameState.getPlayerVictoryPoints(1) == 8);
         assert(gameState.getPlayerSestertii(0) == 0);
         assert(gameState.getPlayerSestertii(1) == 0);
     }
