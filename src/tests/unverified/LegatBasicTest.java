@@ -4,6 +4,8 @@ import framework.Test;
 import framework.cards.Card;
 import framework.interfaces.GameState;
 import framework.interfaces.MoveMaker;
+import java.util.Collection;
+import java.util.ArrayList;
 import javax.naming.OperationNotSupportedException;
 
 /**
@@ -35,11 +37,11 @@ public class LegatBasicTest extends Test {
         gameState.setActionDice(new int [] {3, 3, 4});
         
         Collection<Card> hand = new ArrayList<Card>();
-        hand.add(LEGAT);
+        hand.add(Card.LEGAT);
         gameState.setPlayerHand(0, hand);
                 
         // Place the Legat on disc 3 and activate it
-        move.placeCard(LEGAT, 3);
+        move.placeCard(Card.LEGAT, 3);
         move.chooseCardToActivate(3);
         
         // Check that player 0 has gained 7 victory points, but player
@@ -49,14 +51,16 @@ public class LegatBasicTest extends Test {
         assert(gameState.getPlayerSestertii(0) == 0);
         assert(gameState.getPlayerSestertii(1) == 0);
         
+        Card [] opponentSide = {Card.LEGIONARIUS, 
+                                Card.AESCULAPINUM, 
+                                Card.NOT_A_CARD, 
+                                Card.CONSUL, 
+                                Card.NOT_A_CARD, 
+                                Card.ESSEDUM, 
+                                Card.MACHINA};
+                                
         // Place 5 cards on the opponent's side
-        setPlayerCardsOnDiscs (1, new Card[] {LEGIONARIUS, 
-                                              AESCULAPINUM, 
-                                              NOT_A_CARD, 
-                                              CONSUL, 
-                                              NOT_A_CARD, 
-                                              ESSEDUM, 
-                                              MACHINA});
+        gameState.setPlayerCardsOnDiscs(1, opponentSide);
                                               
         // Activate the Legat again
         move.chooseCardToActivate(3);

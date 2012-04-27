@@ -4,6 +4,9 @@ import framework.Test;
 import framework.cards.Card;
 import framework.interfaces.GameState;
 import framework.interfaces.MoveMaker;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.ArrayList;
 import javax.naming.OperationNotSupportedException;
 
 /**
@@ -34,17 +37,17 @@ public class SenatorBasicTest extends Test {
         gameState.setWhoseTurn(0);
         gameState.setActionDice(new int [] {3, 3, 4});
         Collection<Card> hand = new ArrayList<Card> ();
-        hand.add(SENATOR);
-        hand.add(VELITES);
-        hand.add(PRAETORIANUS);
-        hand.add(ESSEDUM);
-        hand.add(CENTURIO);
-        hand.add(SICARIUS);
-        hand.add(ARCHITECTUS);
+        Collections.addAll(hand, Card.SENATOR,
+                                 Card.VELITES,
+                                 Card.PRAETORIANUS,
+                                 Card.ESSEDUM,
+                                 Card.CENTURIO,
+                                 Card.SICARIUS,
+                                 Card.ARCHITECTUS);
         gameState.setPlayerHand(0, hand);
                 
         // Place the Tribunus Plebis on disc 3 and activate it
-        move.placeCard(SENATOR, 3);
+        move.placeCard(Card.SENATOR, 3);
         move.chooseCardToActivate(3);
         
         // Check that player has lost the necessary sestertii from laying
@@ -55,11 +58,11 @@ public class SenatorBasicTest extends Test {
         assert(gameState.getPlayerSestertii(1) == 0);
         
         // Check that the player can still lay character cards
-        move.placeCard(VELITES, 1);
-        move.placeCard(PRAETORIANUS, 2);
-        move.placeCard(ESSEDUM, 4);
-        move.placeCard(CENTURIO, 5);
-        move.placeCard(SICARIUS, 6);
-        move.placeCard(ARCHITECTUS, 7);
+        move.placeCard(Card.VELITES, 1);
+        move.placeCard(Card.PRAETORIANUS, 2);
+        move.placeCard(Card.ESSEDUM, 4);
+        move.placeCard(Card.CENTURIO, 5);
+        move.placeCard(Card.SICARIUS, 6);
+        move.placeCard(Card.ARCHITECTUS, 7);
     }
 }

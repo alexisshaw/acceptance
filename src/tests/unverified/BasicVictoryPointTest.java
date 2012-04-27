@@ -29,7 +29,7 @@ public class BasicVictoryPointTest extends Test {
         gameState.setPlayerVictoryPoints(0, 0);
         gameState.setPlayerVictoryPoints(1, 0);
         assert(gameState.getPlayerVictoryPoints(0) == 0);
-        assert(gameState.getPlayerVictoryPoins(1) == 0);
+        assert(gameState.getPlayerVictoryPoints(1) == 0);
         assert(gameState.getPoolVictoryPoints() == 36);
         
         // Check that players can have a different number of victory points

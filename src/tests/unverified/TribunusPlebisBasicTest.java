@@ -4,6 +4,8 @@ import framework.Test;
 import framework.cards.Card;
 import framework.interfaces.GameState;
 import framework.interfaces.MoveMaker;
+import java.util.Collection;
+import java.util.ArrayList;
 import javax.naming.OperationNotSupportedException;
 
 /**
@@ -35,12 +37,12 @@ public class TribunusPlebisBasicTest extends Test {
         gameState.setActionDice(new int [] {3, 3, 4});
         
         Collection<Card> hand = new ArrayList<Card>();
-        hand.add(TRIBUNUSPLEBIS);
-        hand.add(TRIBUNUSPLEBIS);
+        hand.add(Card.TRIBUNUSPLEBIS);
+        hand.add(Card.TRIBUNUSPLEBIS);
         gameState.setPlayerHand(0, hand);
                 
         // Place the Tribunus Plebis on disc 3 and activate it
-        move.placeCard(TRIBUNUSPLEBIS, 3);
+        move.placeCard(Card.TRIBUNUSPLEBIS, 3);
         move.chooseCardToActivate(3);
         
         // Check that player 0 has gained a victory point, but player
@@ -52,7 +54,7 @@ public class TribunusPlebisBasicTest extends Test {
         
         // Place a tribunus plebis on the 4, to check that only the one 
         // card is activated
-        move.placeCard(TRIBUNUSPLEBIS, 4);
+        move.placeCard(Card.TRIBUNUSPLEBIS, 4);
         move.chooseCardToActivate(4);
         
         // Check that player 0 has gained a victory point, but player
