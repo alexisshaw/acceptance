@@ -43,7 +43,7 @@ public class TribunusPlebisBasicTest extends Test {
                 
         // Place the Tribunus Plebis on disc 3 and activate it
         move.placeCard(Card.TRIBUNUSPLEBIS, 3);
-        move.chooseCardToActivate(3);
+        move.chooseCardToActivate(3).complete();
         
         // Check that player 0 has gained a victory point, but player
         // 1's score has not changed
@@ -55,7 +55,7 @@ public class TribunusPlebisBasicTest extends Test {
         // Place a tribunus plebis on the 4, to check that only the one 
         // card is activated
         move.placeCard(Card.TRIBUNUSPLEBIS, 4);
-        move.chooseCardToActivate(4);
+        move.chooseCardToActivate(4).complete();
         
         // Check that player 0 has gained a victory point, but player
         // 1's score has not changed

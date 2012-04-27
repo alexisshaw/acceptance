@@ -42,7 +42,8 @@ public class LegatBasicTest extends Test {
                 
         // Place the Legat on disc 3 and activate it
         move.placeCard(Card.LEGAT, 3);
-        move.chooseCardToActivate(3);
+        move.chooseCardToActivate(3).complete();
+        
         
         // Check that player 0 has gained 7 victory points, but player
         // 1's score has not changed
@@ -63,7 +64,7 @@ public class LegatBasicTest extends Test {
         gameState.setPlayerCardsOnDiscs(1, opponentSide);
                                               
         // Activate the Legat again
-        move.chooseCardToActivate(3);
+        move.chooseCardToActivate(3).complete();
         
         // Check that player 0 has gained 2 victory points, but player
         // 1's score has not changed

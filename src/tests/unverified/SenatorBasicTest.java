@@ -48,7 +48,7 @@ public class SenatorBasicTest extends Test {
                 
         // Place the Tribunus Plebis on disc 3 and activate it
         move.placeCard(Card.SENATOR, 3);
-        move.chooseCardToActivate(3);
+        move.chooseCardToActivate(3).complete();
         
         // Check that player has lost the necessary sestertii from laying
         // these cards
