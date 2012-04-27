@@ -7,5 +7,4 @@
 . compile
 
 java -ea framework.TestRunner
->>>>>>> Added name
 

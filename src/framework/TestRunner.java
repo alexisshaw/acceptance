@@ -1,12 +1,9 @@
 package framework;
 
+import framework.interfaces.*;
 import framework.interfaces.AcceptanceInterface;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import tests.verified.*;
-import tests.borderline.*;
-import tests.unverified.*;
 
 import org.reflections.Reflections;
 
@@ -61,21 +58,21 @@ public class TestRunner {
 
         return returnValue;
     }
-    private static AcceptanceInterface[] getAcceptanceInterfacesInPackage(packageName){
+    private static AcceptanceInterface[] getAcceptanceInterfacesInPackage(String packageName){
         Reflections reflections = new Reflections(packageName);
-        Set<Class<? implements AcceptanceInterface>> acceptanceInterfaceClasses = 
+        Set<Class<? extends AcceptanceInterface>> acceptanceInterfaceClasses = 
                     reflections.getSubTypesOf(AcceptanceInterface.class);
         AcceptanceInterface[] returnValue = new AcceptanceInterface[acceptanceInterfaceClasses.size()];
         int noClassesWithEmptyConstructor = 0;
-        for(Class<? implements AcceptanceInterface> acceptanceInterfaceClass:acceptanceInterfaceClasses){
+        for(Class<? extends AcceptanceInterface> acceptanceInterfaceClass:acceptanceInterfaceClasses){
             try{            
-                Constructor<? implements AcceptanceInterface> acceptanceInterfaceConstructor = 
+                Constructor<? extends AcceptanceInterface> acceptanceInterfaceConstructor = 
                         acceptanceInterfaceClass.getConstructor();
-                returnValue[NumClassesWithEmptyConstructor] = acceptanceInterfaceConstructor.newInstance();
-                NumClassesWithEmptyConstructor++;
+                returnValue[noClassesWithEmptyConstructor] = acceptanceInterfaceConstructor.newInstance();
+                noClassesWithEmptyConstructor++;
             } catch (Exception e){}
         }
-        assert(NumClassesWithEmptyConstructor == acceptanceInterfaceClasses.size());
+        assert(noClassesWithEmptyConstructor == acceptanceInterfaceClasses.size());
         return returnValue;
     }
 
@@ -118,7 +115,7 @@ public class TestRunner {
 
     private void runTests(Test[] tests) {
         AcceptanceInterface[] acceptanceInterfaces = getAcceptanceInterfacesInPackage("");
-        assert(acceptanceInterfaces.length > 0)
+        assert(acceptanceInterfaces.length > 0);
         for (AcceptanceInterface acceptanceInterface: acceptanceInterfaces){
             for (Test current : tests) {
                 try {
@@ -126,7 +123,7 @@ public class TestRunner {
                     System.out.println("\t" + current.getShortDescription());
 
                     GameState state = acceptanceInterface.getInitialState();
-                    MoveMaker mover = accertanceInterface.getMover(state);
+                    MoveMaker mover = acceptanceInterface.getMover(state);
                     current.run(state,mover);
  
                     numTestsPassed++;

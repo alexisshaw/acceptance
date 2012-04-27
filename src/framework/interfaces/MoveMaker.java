@@ -115,6 +115,37 @@ public interface MoveMaker {
     public void activateMoneyDisc(int diceToUse)
                                    throws UnsupportedOperationException;
 
+   /**
+     * Activate the Bribe Disc with the given action die.
+     *
+     * <p>
+     * After this method is called:
+     * <ul>
+     * <li>the appropriate action die will have been used</li>
+     * <li>the correct amount of sestertii will have been removed from the
+     * player's Sestertii</li>
+     * <li>the card on the disc will be activated and 
+     * </ul>
+     * </p>
+     *
+     * <p>
+     * This will never be called if:
+     * <ul>
+     * <li>if the user does not have an unused action die of the given
+     * value</li>
+     * <li>the card cannot be activated at the current time</li>
+     * <li> there is no card on this disc </li>
+     * <li>the ActionData parameter does not match the activated
+     * card</li>
+     * </ul>
+     *
+     * @param diceToUse which value dice to activate the disc with
+     * @throws UnsupportedOperationException if the move is not yet
+     * implemented
+     */
+    public CardActivator activateBribeDisc(int diceToUse)
+                                   throws UnsupportedOperationException;
+
     /**
      * End the turn of the current player.
      *
