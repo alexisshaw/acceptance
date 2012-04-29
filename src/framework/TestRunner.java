@@ -129,7 +129,13 @@ public class TestRunner {
 
     private void runTests(Test[] tests) {
         AcceptanceInterface[] acceptanceInterfaces = getAcceptanceInterfacesInPackage("");
+        if (acceptanceInterfaces.length == 0){
+            System.out.println("Cannot find your acceptanceInterface,");
+            System.out.println("please place your jar containg you accpetanceInterface");
+            System.out.println("implementation in the testee folder.");
+        }
         for (AcceptanceInterface acceptanceInterface: acceptanceInterfaces){
+            System.out.println("Now Testing " + acceptanceInterface.getClass() ".")
             for (Test current : tests) {
                 try {
                     System.out.println("Running Test " + current.getClass() + ":");
