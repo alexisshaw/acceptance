@@ -129,7 +129,6 @@ public class TestRunner {
 
     private void runTests(Test[] tests) {
         AcceptanceInterface[] acceptanceInterfaces = getAcceptanceInterfacesInPackage("");
-        assert(acceptanceInterfaces.length > 0);
         for (AcceptanceInterface acceptanceInterface: acceptanceInterfaces){
             for (Test current : tests) {
                 try {
